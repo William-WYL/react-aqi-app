@@ -14,6 +14,7 @@ const useStore = create((set, get) => ({
     const { token } = get();
 
     try {
+      // From https://aqicn.org/api/
       const response = await fetch(`https://api.waqi.info/feed/${city}/?token=${token}`);
       const data = await response.json();
       console.log(data);
