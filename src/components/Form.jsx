@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import useStore from "../store/store";
 import Title from "./title";
 
@@ -7,12 +7,19 @@ const Form = () => {
   const { loading, fetchAQI, setAlertMessage } = useStore();
   const inputRef = useRef(null);
 
-  const handleSearch = () => {
+
+
+  const handleSearch = useCallback(() => {
     if (!city) {
       setAlertMessage("⚠️ Please enter a city name");
     } else {
       fetchAQI(city);
     }
+  }, [city, fetchAQI, setAlertMessage]);
+
+  // props function for Title component
+  const handleTitleClick = () => {
+    window.location.reload(); // Reset the page to its initial state 
   };
 
   // Press Enter triger event
@@ -34,7 +41,7 @@ const Form = () => {
         inputElement.removeEventListener('keydown', handleKeyPress);
       }
     };
-  }, [city]);
+  }, [handleSearch]);
 
 
   return (
@@ -47,7 +54,9 @@ const Form = () => {
       }}
     >
       <form id="searchForm">
-        <Title />
+        <Title
+          title="City Air Quality Search"   // props value for Title component
+          onTitleClick={handleTitleClick} />
         <div id="inputArea">
           <input
             type="text"
@@ -64,4 +73,4 @@ const Form = () => {
   );
 };
 
-export default Form;;
+export default Form;
