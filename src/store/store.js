@@ -26,7 +26,7 @@ const useStore = create((set, get) => ({
         throw new Error("Invalid response from API");
       }
     } catch (error) {
-      set({ error: error.message, alertMessage: '⚠️ Failed to fetch data' });
+      set({ error: error.message, alertMessage: '⚠️ City data not available' });
       console.log(error);
     } finally {
       set({ loading: false });
