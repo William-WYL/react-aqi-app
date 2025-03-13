@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import useStore from "../store/store";
-import Title from "./title";
+import Title from "./Title";
 
 const Form = () => {
   const [city, setCity] = useState('');

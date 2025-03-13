@@ -14,7 +14,7 @@ const Time = () => {
 
   return (
     <>
-      <h2>{time && 'Local Time: '}{(time && formattedDate) || currentDate}</h2>
+      <h2>{time && 'Data Collected Time: '}{(time && formattedDate) || currentDate}</h2>
     </>
   );
 };
